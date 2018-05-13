@@ -1,0 +1,31 @@
+
+.slider {
+  margin: 10px auto;
+  width: 700px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+img{
+  max-width: 700px;
+}
+.slider li {
+  display: none;
+  position: absolute;
+  top: auto;
+  left: 0;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+.prev, .next {
+	margin-top: 150px;
+}
+
+.prev span:hover, .next span:hover {
+	cursor: pointer;
+}

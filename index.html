@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> jQuery - Carousel </title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--Uniquement pour la tête des flèches ;) -->
+  <link rel="stylesheet" href="style.css" >
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="prev">
+			<span class="glyphicon glyphicon-chevron-left"></span>
+		</div>
+
+    <div>
+      <ul class="slider">
+         <li>
+           <img id="img5" src="https://images.unsplash.com/photo-1498145645178-ab2c7cebc433?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=7c1827f649bffcb8ab14a1de623d1fda&auto=format&fit=crop&w=1250&q=80" />
+         </li>
+         <li>
+           <img id="img4" src="https://images.unsplash.com/photo-1491580097983-9b01056a98bf?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1c54ae09f5fd9e41b78b042c13a1f732&auto=format&fit=crop&w=1650&q=80" />
+         </li>
+         <li>
+           <img id="img3" src="https://images.unsplash.com/photo-1461360228754-6e81c478b882?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a3dfc99e835e5c29b22f3397e7da32ae&auto=format&fit=crop&w=1653&q=80" />
+         </li>
+         <li>
+           <img id="img1" src="https://images.unsplash.com/photo-1470948062737-aeb014e274c2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=627f63d2c129fb22e0d7ecf5633b5f0a&auto=format&fit=crop&w=1444&q=80" />
+         </li>
+      </ul>
+    </div>
+    
+    <div class="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+        $(function() {
+          var i=0;
+          affiche();
+      
+          function affiche() {
+            i++;
+            if (i==1) precedent = '#img5'
+                 else precedent = '#img' + (i-1);
+            var actuel = '#img' + i;
+            $(precedent).fadeOut(2000);
+            $(actuel).fadeIn(2000);
+            if (i==5) i=0;          
+          }
+      
+          setInterval(affiche, 2000);
+        });
+  </script>
+
+</body>
+</html>

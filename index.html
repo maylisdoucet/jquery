@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <title> jQuery - Carousel </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!--Uniquement pour la tête des flèches ;) -->
+ 
   <link rel="stylesheet" href="style.css" >
 </head>
 <body>
 
   <div class="container">
 
-    <div class="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
+    <div>
+			<span class="glyphicon glyphicon-chevron-left" id="prev"></span>
 		</div>
 
     <div>
@@ -32,29 +32,73 @@
       </ul>
     </div>
     
-    <div class="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
+    <div >
+        <span class="glyphicon glyphicon-chevron-right" id="next"></span>
       </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script>
-        $(function() {
-          var i=0;
-          affiche();
-      
-          function affiche() {
-            i++;
-            if (i==1) precedent = '#img5'
-                 else precedent = '#img' + (i-1);
-            var actuel = '#img' + i;
-            $(precedent).fadeOut(2000);
-            $(actuel).fadeIn(2000);
-            if (i==5) i=0;          
-          }
-      
-          setInterval(affiche, 2000);
-        });
-  </script>
+   
+
+ <script>
+    $(document).ready(function() {
+
+
+var $slider = $('.slider'); 
+var $slide = 'li'; 
+var $transition_time = 1000; 
+var $time_between_slides = 3000; 
+
+
+function slides(){
+    return $slider.find($slide); 
+}
+
+function moveSlide(value){
+
+    var currentSlide = $slider.find($slide + '.active').index();   
+    var nextSlide = currentSlide + value;                                             
+
+    if (nextSlide > slides().length - 1) {
+        nextSlide = 0;
+    }
+    if (nextSlide < 0) {
+        nextSlide = slides().length - 1;
+    }
+
+    slides().eq(currentSlide).removeClass('active');             
+    slides().eq(currentSlide).fadeOut($transition_time);  
+
+
+    slides().eq(nextSlide).fadeIn($transition_time);
+    slides().eq(nextSlide).addClass('active'); 
+}
+
+slides().fadeOut();
+
+slides().first().addClass('active'); 
+slides().first().fadeIn($transition_time);
+
+$interval = setInterval(
+    function (){
+        moveSlide(1);
+    }
+    , $transition_time +  $time_between_slides 
+);
+
+$('#prev').click(function() {
+
+    moveSlide(-1);
+})
+
+
+
+$('#next').click(function(){
+    moveSlide(1);
+})
+
+
+});
+</script>
 
 </body>
 </html>
